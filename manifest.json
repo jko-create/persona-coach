@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Persona Coach - New Tab",
+  "version": "1.0.0",
+  "description": "Turns your New Tab into an AI-powered personal coach with dynamic, context-aware micro-coaching.",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.openai.com/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

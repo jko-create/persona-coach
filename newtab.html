@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Coach</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <button id="settingsBtn" class="icon-btn" title="Settings" aria-label="Settings">⚙</button>
+
+  <main id="app" class="app">
+
+    <div id="clock" class="clock"></div>
+
+    <!-- Goal setup screen (shown when no goal is set for today) -->
+    <section id="goalSetup" class="goal-setup hidden">
+      <p class="prompt-text">What is your #1 focus for today?</p>
+      <input id="goalInput" type="text" placeholder="e.g. Ship the landing page" maxlength="140" autofocus />
+      <button id="goalSubmit">Lock it in</button>
+    </section>
+
+    <!-- Main coaching view (shown once a goal exists) -->
+    <section id="coachView" class="coach-view hidden">
+      <div class="persona-row">
+        <div class="avatar" id="avatar">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9.5 2a3.5 3.5 0 0 0-3.5 3.5v.6A3.5 3.5 0 0 0 3 9.5a3.5 3.5 0 0 0 1.3 2.73A3.5 3.5 0 0 0 3 15.2 3.5 3.5 0 0 0 6.5 18.7v.8A3.5 3.5 0 0 0 10 23"/>
+          <path d="M14.5 2A3.5 3.5 0 0 1 18 5.5v.6a3.5 3.5 0 0 1 3 3.4 3.5 3.5 0 0 1-1.3 2.73A3.5 3.5 0 0 1 21 15.2a3.5 3.5 0 0 1-3.5 3.5v.8A3.5 3.5 0 0 1 14 23"/>
+        </svg>
+      </div>
+        <div class="persona-name" id="personaName">Coach</div>
+      </div>
+
+      <div class="message-row">
+        <p id="coachMessage" class="coach-message">Loading…</p>
+        <button id="refreshBtn" class="icon-btn refresh-btn" title="Get a fresh message" aria-label="Refresh">↻</button>
+      </div>
+
+      <div class="goal-card">
+        <span class="goal-label">TODAY'S GOAL</span>
+        <span id="goalText" class="goal-text"></span>
+        <button id="editGoal" class="text-btn">edit</button>
+      </div>
+
+      <p id="quotaNote" class="quota-note hidden">
+        ⚡ Daily API limit reached — showing an offline tip until it resets.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Settings modal -->
+  <div id="settingsModal" class="modal hidden">
+    <div class="modal-box">
+      <h2>Settings</h2>
+
+      <label class="field-label" for="providerSelect">Provider</label>
+      <select id="providerSelect">
+        <option value="gemini">Google Gemini (free tier available)</option>
+        <option value="openai">OpenAI</option>
+      </select>
+
+      <label class="field-label" for="apiKeyInput">API Key</label>
+      <input id="apiKeyInput" type="password" placeholder="Paste your API key" autocomplete="off" />
+      <p class="hint">Stored only in this browser (chrome.storage.local). Never sent anywhere but the provider's API.</p>
+      <p class="hint">Gemini's free tier includes up to 1,500 requests/day at no cost — get a key directly from Google, no billing required for normal use.</p>
+      <p id="usageStats" class="hint usage-stats">No API calls made yet today.</p>
+
+      <label class="field-label" for="personaSelect">Persona</label>
+      <select id="personaSelect">
+        <option value="elon">High-Performance Tough-Love Coach</option>
+      </select>
+
+      <div class="modal-actions">
+        <button id="closeSettings" class="text-btn">Cancel</button>
+        <button id="saveSettings" class="primary-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
